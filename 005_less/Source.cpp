@@ -41,18 +41,29 @@ public:
 		cout << "Ob: " << ob << endl;
 		cout << "Price: " << price << endl;
 	}
+
+	friend bool operator < (const car&, const car&);
+	friend bool operator > (const car&, const car&);
 };
+
+bool operator < (const car& e1, const car& e2) {
+	return e1.getOb() < e2.getOb();
+}
+
+bool operator > (const car& e1, const car& e2) {
+	return e1.getOb() > e2.getOb();
+}
 
 template <class T>
 void printVector(vector<T> v) {
 	cout << string(50, '-') << "\n";
-	for (int i = 0; i < v.size(); i++)
+	for (int i = 0; i < v.size(); i++) {
 		v[i].printCar();
+		cout << endl;
+	}
 	cout << "\n" << string(50, '-') << "\n";
 }
 
-bool sortAsc(int a, int b) { return a < b; }
-bool sortDesc(int a, int b) { return a > b; }
 
 //class car_dealership {
 //	vector<car> carDealership;
@@ -71,7 +82,30 @@ int main() {
 		car("Cadilac",2017,4,80000)
 	};
 
+	car ccaarr("BMW", 2022, 12, 50000);
+
 	printVector(carDealership);
-	
-	return 0;
+	carDealership.push_back(car("tanc", 2003, 5, 4000));
+	printVector(carDealership);
+	auto it = remove_if(carDealership.begin(), carDealership.end(), [](const car& el) {
+		return el.getAge() == 2011;
+		});
+	carDealership.erase(it, carDealership.end());
+	printVector(carDealership);
+
+
+	auto res = find_if(carDealership.begin(), carDealership.end(),
+	 [](car el) {
+	  return el.getName() == "BMW";
+	});
+
+	if (res == carDealership.end()) cout << "not found!!!\n";
+	else cout << "value found: " << "\n";
+	ccaarr.getName();
+	printVector(carDealership);
+
+	 sort(carDealership.begin(), carDealership.end());
+	 printVector(carDealership);
+
+    return 0;
 }
