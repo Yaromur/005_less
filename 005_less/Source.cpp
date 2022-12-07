@@ -18,8 +18,30 @@ public:
 		this->price = price;
 	}
 
-	string
+	string getName()const {
+		return name;
+	}
+
+	int getAge()const {
+		return age;
+	}
+
+	int getOb()const {
+		return ob;
+	}
+
+	int getPrice()const {
+		return price;
+	}
+
+	void printCar() {
+		cout << "Name: " << name << endl;
+		cout << "Age: " << age << endl;
+		cout << "Ob: " << ob << endl;
+		cout << "Price: " << price << endl;
+	}
 };
+
 
 int main() {
 
